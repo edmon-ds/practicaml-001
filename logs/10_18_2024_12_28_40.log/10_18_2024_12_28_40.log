@@ -1,0 +1,6 @@
+[2024-10-18 12:28:40,449  148  numexpr.utils INFO - Note: NumExpr detected 16 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8. ]
+[2024-10-18 12:28:40,449  160  numexpr.utils INFO - NumExpr defaulting to 8 threads. ]
+[2024-10-18 12:28:41,399  18  root INFO - enter the data ingestion method ]
+[2024-10-18 12:28:41,611  26  root INFO - read the dataset as dataframe  ]
+[2024-10-18 12:28:41,620  32  root INFO - se ha creado el csv ]
+[2024-10-18 12:28:41,628  39  root INFO - se ha separado el dataset ]
