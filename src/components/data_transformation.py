@@ -1,4 +1,5 @@
 import sys
+
 import numpy as np
 import pandas as pd
 
@@ -10,13 +11,21 @@ from sklearn.preprocessing import OneHotEncoder , StandardScaler
 
 from src.exception import CustomException
 from src.logger import logging
-import os
+
 from src.utils import *
 
-from data_config import DataConfig
+
+from dataclasses import dataclass
+from sklearn.model_selection import train_test_split
+
+
+@dataclass
+class DataTransformationConfig():
+    preprocessor_obj_file_path:str  = os.path.join("artifacts" , "preprocessor.pkl" )
+
 class DataTransformation():
     def __init__(self):
-        self.dataconfig = DataConfig()
+        self.dataconfig = DataTransformationConfig()
         self.numerical_features = ['Age', 'AnnualIncome', 'WorkExperience', 'FamilySize']
         self.categorical_features = [ 'Gender', 'Profession']
         self.label = 'SpendingScore'
@@ -48,22 +57,19 @@ class DataTransformation():
         except Exception as e:
             CustomException(e , sys)
     
-    def get_data_transformed(self):
+       
+    def initiate_data_transformation(self , train_df , test_df):
         try:
-            train_df = pd.read_csv(DataConfig.train_data_path)
-            test_df = pd.read_csv(DataConfig.test_data_path)
-
+            
             logging.info("train and test set readed")
             
-
-            preprocessor = self.get_preprocessor()
-
+            preprocessor = self.get_preprocessor()       
+            
             train_input_raw = train_df.drop(columns = [self.label])
             train_label = train_df[self.label]
 
             test_input_raw = test_df.drop(columns = [self.label])
             test_label = test_df[self.label]
-
 
             logging.info("applying preprocessing to the dataset")
 
@@ -75,7 +81,7 @@ class DataTransformation():
 
             logging.info("saving preprocessing")
 
-            save_object(file_path=self.dataconfig.preprocessor_obj_file_path)
+            save_object(file_path=self.dataconfig.preprocessor_obj_file_path , obj = preprocessor )
             
             return (train_array , test_array)
 

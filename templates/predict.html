@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Data Form</title>
+</head>
+
+<body>
+
+    <h2>Customer Data Form</h2>
+
+    <form action="{{ url_for('predict_datapoint') }}" method="post">
+
+        <label for="CustomerID">Customer ID:</label><br>
+        <input type="text" id="CustomerID" name="CustomerID" required value="1"><br><br>
+
+        <label for="Gender">Gender:</label><br>
+        <select id="Gender" name="Gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br><br>
+
+        <label for="Age">Age:</label><br>
+        <input type="number" id="Age" name="Age" required><br><br>
+
+        <label for="AnnualIncome">Annual Income:</label><br><br>
+        <input type="number" id="AnnualIncome" name="AnnualIncome" required><br>
+
+        <label for="Profession">Profession:</label><br>
+        <select id="Profession" name="Profession" required>
+            <option value="Artist">Artist</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Engineer">Engineer</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Executive">Executive</option>
+            <option value="Lawyer">Lawyer</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Homemaker">Homemaker</option>
+        </select><br><br>
+
+        <label for="WorkExperience">Work Experience (years):</label><br>
+        <input type="number" id="WorkExperience" name="WorkExperience" required><br>
+
+        <label for="FamilySize">Family Size:</label><br>
+        <input type="number" id="FamilySize" name="FamilySize" required><br><br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+ <p>THE  prediction is {{results}}</p>    
+
+</body>
+</html>
+    
